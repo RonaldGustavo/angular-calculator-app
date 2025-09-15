@@ -1,1 +1,25 @@
-<p>calculator works!</p>
+<div class="calculator">
+  <div class="display">
+    {{ displayValue }}
+  </div>
+
+  <div class="buttons">
+    <ng-container *ngFor="let row of buttons; let i = index">
+      <div class="button-row">
+        <ng-container *ngFor="let btn of row">
+          <button
+            class="btn"
+            [ngClass]="{
+              operator: isOperator(btn),
+              equals: btn === '=',
+              zero: btn === '0'
+            }"
+            (click)="handleClick(btn)"
+          >
+            {{ btn === '/' ? '÷' : btn === '*' ? '×' : btn }}
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
