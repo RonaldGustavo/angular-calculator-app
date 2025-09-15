@@ -6,14 +6,14 @@ import { Component } from '@angular/core';
   selector: 'app-calculator',
   imports: [CommonModule],
   templateUrl: './calculator.component.html',
-  styleUrls: ['./calculator.component.scss'], // ✅ harus styleUrls (array)
+  styleUrls: ['./calculator.component.scss'],
 })
 export class CalculatorComponent {
   displayValue = '0';
   firstOperand: number | null = null;
   operatorValue: string | null = null;
   waitingForSecondOperand = false;
-  maxLength = 12; // batas maksimal karakter
+  maxLength = 12;
 
   buttons = [
     ['C', '±', '%', '/'],
@@ -36,7 +36,6 @@ export class CalculatorComponent {
     return this.appendNumber(btn);
   }
 
-  // === FUNGSI CALCULATOR ===
   appendNumber(number: string) {
     // 🔹 Jika sedang menunggu operand kedua
     if (this.waitingForSecondOperand) {
