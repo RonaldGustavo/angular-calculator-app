@@ -1,22 +1,25 @@
 <div class="calculator">
   <div class="display">
-    {{ displayValue }}
+    <div class="expression">{{ expression || '&nbsp;' }}</div>
+    <div class="value" [style.font-size]="displayFontSize">{{ displayValue }}</div>
   </div>
 
   <div class="buttons">
-    <ng-container *ngFor="let row of buttons; let i = index">
+    <ng-container *ngFor="let row of buttons">
       <div class="button-row">
         <ng-container *ngFor="let btn of row">
           <button
             class="btn"
             [ngClass]="{
-              operator: isOperator(btn),
-              equals: btn === '=',
-              zero: btn === '0'
+              'btn--func': btn === 'C' || btn === '±' || btn === '%',
+              'btn--operator': isOperator(btn),
+              'btn--equals': btn === '=',
+              'btn--zero': btn === '0',
+              'btn--active-op': btn === operatorSymbol || (btn === '/' && operatorValue === '/') || (btn === '*' && operatorValue === '*') || (btn === '-' && operatorValue === '-') || (btn === '+' && operatorValue === '+')
             }"
             (click)="handleClick(btn)"
           >
-            {{ btn === '/' ? '÷' : btn === '*' ? '×' : btn }}
+            {{ btn === '/' ? '÷' : btn === '*' ? '×' : btn === '-' ? '−' : btn }}
           </button>
         </ng-container>
       </div>

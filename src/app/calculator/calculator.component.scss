@@ -1,53 +1,151 @@
 .calculator {
-width: 320px;
-margin: 0 auto;
-border-radius: 1rem;
-overflow: hidden;
-background: #1c1c1c;
-color: #fff;
+  width: 100%;
+}
 
 .display {
-font-size: 2rem;
-text-align: right;
-padding: 1rem;
-background: #000;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 16px;
+  padding: 20px 24px 16px;
+  margin-bottom: 16px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  .expression {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.45);
+    min-height: 1.2em;
+    margin-bottom: 6px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+  }
+
+  .value {
+    color: #ffffff;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1;
+    transition: font-size 0.15s ease;
+    word-break: break-all;
+    text-align: right;
+  }
 }
 
 .buttons {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .button-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .btn {
-    font-size: 1.5rem;
-    padding: 1rem;
-    background: rgb(211, 204, 204);
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 0;
+  height: 72px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  transition: transform 0.1s ease, background 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
 
-    &.operator {
-    background: #ff9500;
-    color: #fff;
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.15s ease;
+    border-radius: inherit;
+  }
 
-    &.equals {
-    background: #34c759;
-    }
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
 
-    &.zero {
-    grid-column: span 2; // tombol 0 lebih lebar
+    &::after {
+      background: rgba(255, 255, 255, 0.05);
     }
+  }
+
+  &:active {
+    transform: scale(0.93);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+  }
+
+  &--func {
+    background: rgba(180, 180, 200, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.2rem;
 
     &:hover {
-    background: #555;
+      background: rgba(180, 180, 200, 0.32);
     }
-}
-}
+  }
+
+  &--operator {
+    background: rgba(255, 149, 0, 0.85);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 300;
+    box-shadow: 0 4px 20px rgba(255, 149, 0, 0.3);
+
+    &:hover {
+      background: rgba(255, 149, 0, 1);
+      box-shadow: 0 6px 24px rgba(255, 149, 0, 0.45);
+    }
+
+    &:active {
+      background: rgba(255, 149, 0, 0.7);
+    }
+  }
+
+  &--active-op {
+    background: #fff;
+    color: #ff9500;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  &--equals {
+    background: linear-gradient(135deg, #30d158, #25a244);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 300;
+    box-shadow: 0 4px 20px rgba(48, 209, 88, 0.35);
+
+    &:hover {
+      background: linear-gradient(135deg, #3ae066, #2ab84d);
+      box-shadow: 0 6px 28px rgba(48, 209, 88, 0.5);
+    }
+
+    &:active {
+      background: linear-gradient(135deg, #25a244, #1e8a38);
+    }
+  }
+
+  &--zero {
+    grid-column: span 2;
+    text-align: left;
+    padding-left: 28px;
+    font-size: 1.4rem;
+  }
 }
